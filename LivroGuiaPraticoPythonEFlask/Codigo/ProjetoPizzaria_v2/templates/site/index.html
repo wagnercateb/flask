@@ -1,0 +1,45 @@
+<html>
+<head>
+	<title>Pizzaria - Projeto Final</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/folha.css') }}">
+</head>
+<body>
+
+<div class="topnav">
+  <a href="#">Inicio</a>
+  <a href="#cardapio">Cardápio</a>
+  <a href="#funcionamento">Funcionamento</a>
+  {% if session['usuario'] %}
+	<div style="float:right"> <a href="#">Olá, <b>{{ session['usuario'].usuario }} </b></a><a href="{{ url_for('usuario.sair') }}"><span>Sair</span></a> </div>
+  {% else %}
+	<a href="{{ url_for('usuario.login') }}" style="float:right"><span>Login</span></a>
+  {% endif %}
+</div>
+
+<div class="header"></div>
+<div class="titulo-principal">PIZZARIA</div>
+
+<div class="row" id="cardapio">
+	<div class="card">
+		<h1>Pizzas</h1>
+		<ul class="listas">
+			<li> <p>Portuguesa - Mussarela, presunto, ovo de codorna, azeitona preta, cebola e pimentão verde.<span class="preco">R$ 29,90</span></p> </li>
+			<li> <p>4 Queijos - Mussarela, requeijão, gorgonzola e parmesão ralado.<span class="preco">R$ 29,90</span></p> </li>
+			<li> <p>Bauru - Mussarela, presunto, requeijão e tomate.<span class="preco">R$ 29,90</span></p> </li>
+			<li> <p>Frango Grelhado - Mussarela, frango, requeijão, tomate, azeitona preta e manjericão.<span class="preco">R$ 29,90</span></p> </li>
+		</ul>
+		<p align="center">
+			<a href="#" class="myButton">Fazer pedido</a>
+		</p>
+	</div>
+</div>
+
+<div id="funcionamento" class="footer">
+  <h2>Horário de funcionamento</h2>
+  <p>
+	Ter - Dom das 18 ás 0 horas.
+  </p>
+</div>
+
+</body>
+</html>

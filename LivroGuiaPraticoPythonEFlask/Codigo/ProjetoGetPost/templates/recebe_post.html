@@ -1,0 +1,12 @@
+<html>
+<body>
+<h1>Recebendo os dados via POST</h1>
+<p>
+	Nome: {{ request.form['nome'] }}  <br/>
+	Idade: {{ request.form['idade'] }}  <br/>
+</p>
+
+<a href="{{ url_for('index') }}">Página inicial</a>
+
+</body>
+</html>

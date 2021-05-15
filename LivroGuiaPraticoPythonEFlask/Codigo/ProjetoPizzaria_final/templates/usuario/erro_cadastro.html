@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Erro!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<h1 align="center" style="background-color: red;color: white;font-weight: bold;">Erro ao realizar o registro, você será redirecionado para a tela de Login!</h1>
+
+<script>
+	setTimeout(function(){ window.location = '{{ url_for('usuario.login') }}'; },3000);
+</script>
+</body>
+</html>

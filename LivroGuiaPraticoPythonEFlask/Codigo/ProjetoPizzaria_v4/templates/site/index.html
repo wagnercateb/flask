@@ -1,0 +1,72 @@
+<html>
+<head>
+	<title>Pizzaria - Projeto Final</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/folha.css') }}">
+</head>
+<body>
+
+<div class="topnav">
+  <a href="#">Inicio</a>
+  <a href="#cardapio">Cardápio</a>
+  <a href="#funcionamento">Funcionamento</a>
+  {% if session['usuario'] %}
+	<div style="float:right"> 
+		{% if session['usuario'].tipo == 'gerente' %}
+			<a href="{{ url_for('pizzas.lista') }}"><span>Gerenciar Pizzas</span></a>
+		{% endif %}
+		<a href="#">Olá, <b>{{ session['usuario'].nome }} </b></a>
+		<a href="{{ url_for('usuario.sair') }}"><span>Sair</span></a> 
+	</div>
+  {% else %}
+	<a href="{{ url_for('usuario.login') }}" style="float:right"><span>Login</span></a>
+  {% endif %}
+</div>
+
+<div class="header"></div>
+<div class="titulo-principal">PIZZARIA</div>
+
+<div class="row" id="cardapio">
+	<div class="card">
+		<h1>Pizzas</h1>
+		{% if not lista %}
+			Nenhuma Pizza foi cadastrada! <br>
+		{% else %}
+			<ul class="listas">
+				<li> 
+					<p><b>Descrição</b></span>
+						<span class="titulo_preco">Gigante</span>
+						<span class="titulo_preco">Grande</span>
+						<span class="titulo_preco">Média&nbsp;</span>
+						<span class="titulo_preco">Pequena&nbsp;</span> 
+						<span class="titulo_preco">Broto&nbsp;</span> 
+					</p> 
+				</li>
+				{% for item in lista %}
+				<li> 
+					<p style="font-size: 0.9em;">
+						{{ item['nome'] }} - {{ item['descricao'] }}
+						<span class="preco">R$ 51,90</span>
+						<span class="preco">R$ 41,90</span>
+						<span class="preco">R$ 31,90</span>
+						<span class="preco">R$ 21,90</span>
+						<span class="preco">R$ 11,90</span>
+					</p> 
+				</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+		<p align="center">
+			<a href="#" class="myButton">Fazer pedido</a>
+		</p>
+	</div>
+</div>
+
+<div id="funcionamento" class="footer">
+  <h2>Horário de funcionamento</h2>
+  <p>
+	Ter - Dom das 18 ás 0 horas.
+  </p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<html>
+<body>
+<h1>Formulário GET</h1>
+
+<!-- 
+	'resultado2' é o MÉTODO chamado por uma rota definida em app.py:
+	@app.route("/resultado1/", methods=['GET','POST'])
+	def resultado2():
+ -->
+<form method="get" action="{{ url_for('resultado2') }}">  
+	<!-- Flask can generate URLs using the url_for() function of the flask package. 
+			Hardcoding URLs in the templates and view functions is a bad practice. -->
+	Nome: <input name="nome"/> <br/>
+	Idade: <input name="idade"/> <br/>
+	<button>Enviar</button>
+</form>
+</body>
+</html>

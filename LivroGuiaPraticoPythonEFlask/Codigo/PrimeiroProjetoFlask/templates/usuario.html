@@ -1,0 +1,21 @@
+<html>
+<body>
+<h1>Estou na página de usuário</h1>
+	{% if name %}
+	  <h3>Olá, {{ name }}!</h3>
+	{% else %}
+	  <h3>Olá, você é um usuário anonimo!</h3>
+	{% endif %}
+	
+<p>Vem do request {{ categoria }} - Criando um link: {{ url_for('usuario') }} - Listando direto da página: {{ request.args.get("categoria") }}</p>
+
+<div>
+	<ul>
+	{% for x in range(1, 6) %}
+		<li>Item - {{ x }}</li>
+	{% endfor %}
+	</ul>
+</div>
+
+</body>
+</html>

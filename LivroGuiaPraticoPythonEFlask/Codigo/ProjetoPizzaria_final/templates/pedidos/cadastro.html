@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Novo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cadastro.css') }}">
+</head>
+<body>
+
+<h2 align="center">Fazer pedido</h2>
+
+<form action="{{ url_for('pedidos.salvar') }}" method="post">
+  <div class="container">
+	<input type="hidden" name="usuario" value="{{session['usuario'].id}}"/>
+	<input type="hidden" name="id" value="{{pedido.id}}"/>
+	
+    <label for="nome"><b>Qual pizza deseja pedir?</b></label><br>
+    <select name="pizza" style="font-size: 1.1em;">
+		{% for item in pizzas %}
+			<option value="{{item.id}}">{{ item.nome }} - {{ item.descricao }}</option>
+		{% endfor %}
+	</select>
+
+	<br><br>
+    <label for="preco"><b>Qual tamanho?:</b></label><br>
+	<select name="preco" style="font-size: 1.1em;">
+		<option value="11.90">Broto - R$ 11,90 - 4 Fatias</option>
+		<option value="21.90">Pequena - R$ 21,90 - 6 Fatias</option>
+		<option value="31.90">Média - R$ 31,90 - 8 Fatias</option>
+		<option value="41.90">Grande - R$ 41,90 - 10 Fatias</option>
+		<option value="51.90">Extra Grande - R$ 51,90 - 12 Fatias</option>
+	</select>
+
+    <button type="submit">Pedir</button>
+
+	<br>
+	<button type="button" class="cancelbtn" onclick="window.history.go(-1);">Cancelar</button>
+  </div>
+
+</form>
+
+</body>
+</html>

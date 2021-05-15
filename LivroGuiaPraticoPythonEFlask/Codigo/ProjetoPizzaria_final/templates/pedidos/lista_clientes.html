@@ -1,0 +1,64 @@
+<html>
+<head>
+	<title>Gerenciando Pizzas - Projeto Final</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/folha.css') }}">
+</head>
+<body>
+
+<div class="topnav">
+  <a href="{{ url_for('site.site') }}">Inicio</a>
+  {% if session['usuario'] %}
+	<div style="float:right"> 
+		<a href="#">Olá, <b>{{ session['usuario'].nome }} </b></a>
+		<a href="{{ url_for('usuario.sair') }}"><span>Sair</span></a> 
+	</div>
+  {% else %}
+	<a href="{{ url_for('usuario.login') }}" style="float:right"><span>Login</span></a>
+  {% endif %}
+</div>
+
+<div class="row">
+	<div class="card">
+		<h1 align="center">Meus Pedidos</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="card">
+		{% if lista == False %}
+			Nenhum pedido encontrado! <br>
+			<a href="{{ url_for('pedidos.cadastro') }}">Fazer pedido</a>
+		{% else %}
+			<div align="center"><a href="{{ url_for('pedidos.cadastro') }}">FAZER PEDIDO</a></div>
+			<br>
+			<table width="100%">
+				<thead>
+					<tr>
+						<th>Pedidos</th>
+						<th>Valor pedido</th>
+						<th>Status pedido</th>
+						<th>Ação</th>
+					</tr>
+				</thead>
+				<tbody>	
+					{% for item in lista %}
+					<tr>
+						<td>{{ banco.getPizza(item['codigo_pizza'])['nome'] }} - {{ banco.getPizza(item['codigo_pizza'])['descricao'] }}</td>
+						<td>R$ {{ item['tamanho_valor'].replace('.',',') }}</td>
+						<td>{{ item['status'] }}</td>
+						<td>
+							{% if item['status'] == 'Concluido' %}
+							{% else %}
+								<a onclick="return confirm('Deseja realmente cancelar o seu pedido?')" href="{{ url_for('pedidos.excluir') }}{{item['id']}}">Cancelar Pedido</a>
+							{% endif %}
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% endif %}
+	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<html>
+<body>
+<h1>Criando um formulário</h1>
+<form action="{{ url_for('formulario_post') }}" method="post">
+	<label>Nome:</label><input type="text" name="nome"> <br/>
+	<label>Idade</label><input type="text" name="idade"> <br/>
+	<label>Sexo</label>
+	<select name="sexo">
+		<option value="M">Masculino</option>
+		<option value="F">Feminino</option>
+	</select>
+	<br/>
+	<button>Enviar</button>
+</form>
+</body>
+</html>

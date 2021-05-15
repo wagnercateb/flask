@@ -1,0 +1,61 @@
+<html>
+<head>
+	<title>Gerenciando Pizzas - Projeto Final</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/folha.css') }}">
+</head>
+<body>
+
+<div class="topnav">
+  <a href="{{ url_for('site.site') }}">Inicio</a>
+  <a href="{{ url_for('pizzas.cadastro') }}">Cadastrar nova Pizza</a>
+  
+  {% if session['usuario'] %}
+	<div style="float:right"> 
+		<a href="#">Olá, <b>{{ session['usuario'].nome }} </b></a>
+		<a href="{{ url_for('usuario.sair') }}"><span>Sair</span></a> 
+	</div>
+  {% else %}
+	<a href="{{ url_for('usuario.login') }}" style="float:right"><span>Login</span></a>
+  {% endif %}
+</div>
+
+<div class="row">
+	<div class="card">
+		<h1 align="center">Gerenciar Pizzas</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="card">
+		{% if not lista %}
+			Nenhuma Pizza foi cadastrada, por favor cadastre uma agora mesmo! <br>
+			<a href="{{ url_for('pizzas.cadastro') }}"> CADASTRA </a>
+		{% else %}
+			<table width="100%">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Descrição</th>
+						<th>Ação</th>
+					</tr>
+				</thead>
+				<tbody>	
+					{% for item in lista %}
+					<tr>
+						<td>{{ item['nome'] }}</td>
+						<td>{{ item['descricao'] }}</td>
+						<td>
+							<a href="{{ url_for('pizzas.cadastro') }}{{item['id']}}">Alterar</a>
+							&nbsp;
+							<a onclick="return confirm('Deseja realmente excluir a Pizza selecionada?')" href="{{ url_for('pizzas.excluir') }}{{item['id']}}">Excluir</a>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% endif %}
+	</div>
+</div>
+
+</body>
+</html>

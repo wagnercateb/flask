@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Novo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.cancelbtn {
+    width: 100%;
+    padding: 10px 18px;
+    background-color: #f44336 !important;
+	text-decoration: none;
+}
+
+.registrarbtn {
+    padding: 10px 18px;
+    background-color: #0867D7 !important;
+	text-decoration: none;
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+    .registrarbtn {
+       width: 100%;
+    }
+}
+</style>
+</head>
+<body>
+
+<h2 align="center">Nova Pizza</h2>
+
+<form action="{{ url_for('pizzas.salvar') }}" method="post">
+  <div class="container">
+	<input type="hidden" name="id" value="{{pizza.id}}"/>
+	
+    <label for="nome"><b>Nome da Pizza:</b></label>
+    <input type="text" placeholder="Digite o nome da pizza" name="nome" value="{{pizza.nome}}" required>
+
+    <label for="descricao"><b>Descrição:</b></label>
+    <input type="text" placeholder="Digite a descrição da pizza" name="descricao"  value="{{pizza.descricao}}" required>
+
+	<!--
+    <label for="preco"><b>Preco e tamanho:</b></label>
+	<select name="preco" style="font-size: 1.1em;">
+		<option value="11.90">Broto - R$ 11,90 - 4 Fatias</option>
+		<option value="21.90">Pequena - R$ 21,90 - 6 Fatias</option>
+		<option value="31.90">Média - R$ 31,90 - 8 Fatias</option>
+		<option value="41.90">Grande - R$ 41,90 - 10 Fatias</option>
+		<option value="51.90">Extra Grande - R$ 51,90 - 12 Fatias</option>
+	</select>
+	-->
+
+	{% if not pizza.id %}
+    <button type="submit">Cadastrar</button>
+	{% else %}
+	<button type="submit">Alterar</button>
+	{% endif %}
+	<br>
+	<button type="button" class="cancelbtn" onclick="window.history.go(-1);">Cancelar</button>
+  </div>
+
+</form>
+
+</body>
+</html>

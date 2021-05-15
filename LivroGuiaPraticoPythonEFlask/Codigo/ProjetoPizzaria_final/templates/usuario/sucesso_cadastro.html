@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sucesso!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<h1 align="center" style="background-color: green;color: white;font-weight: bold;">Seu registro foi realizado com sucesso! <br>Você será redirecionado para a tela principal!</h1>
+
+<script>
+	setTimeout(function(){ window.location = '{{ url_for('site.site') }}'; },3000);
+</script>
+</body>
+</html>
